@@ -1,27 +1,27 @@
 package double_linked_list
 
-type DoubleLinkedList struct {
-	head *linkedNode
-	tail *linkedNode
+type DoubleLinkedList[T interface{}] struct {
+	head *linkedNode[T]
+	tail *linkedNode[T]
 	size int
 }
 
-type linkedNode struct {
-	val  int
-	next *linkedNode
-	prev *linkedNode
+type linkedNode[T interface{}] struct {
+	val  T
+	next *linkedNode[T]
+	prev *linkedNode[T]
 }
 
-func New() DoubleLinkedList {
-	return DoubleLinkedList{size: 0, head: nil, tail: nil}
+func New[T interface{}]() DoubleLinkedList[T] {
+	return DoubleLinkedList[T]{size: 0, head: nil, tail: nil}
 }
 
-func (q *DoubleLinkedList) Size() int {
+func (q *DoubleLinkedList[T]) Size() int {
 	return q.size
 }
 
-func (q *DoubleLinkedList) Enqueue(val int) {
-	n := &linkedNode{val: val, next: nil, prev: nil}
+func (q *DoubleLinkedList[T]) Enqueue(val T) {
+	n := &linkedNode[T]{val: val, next: nil, prev: nil}
 
 	if q.size == 0 {
 		q.head = n
@@ -42,15 +42,15 @@ func (q *DoubleLinkedList) Enqueue(val int) {
 	q.size++
 }
 
-func (q *DoubleLinkedList) Dequeue() int {
+func (q *DoubleLinkedList[T]) Dequeue() T {
 	first := q.head
 	q.head = q.head.next
 	q.size--
 	return first.val
 }
 
-func (q *DoubleLinkedList) Pop() int {
-	var last *linkedNode
+func (q *DoubleLinkedList[T]) Pop() T {
+	var last *linkedNode[T]
 
 	// 1
 	if q.size == 1 {
@@ -73,7 +73,7 @@ func (q *DoubleLinkedList) Pop() int {
 	return last.val
 }
 
-func (q *DoubleLinkedList) Last() int {
+func (q *DoubleLinkedList[T]) Last() T {
 	if q.size == 1 {
 		return q.head.val
 	}
@@ -81,6 +81,6 @@ func (q *DoubleLinkedList) Last() int {
 	return q.tail.val
 }
 
-func (q *DoubleLinkedList) First() int {
+func (q *DoubleLinkedList[T]) First() T {
 	return q.head.val
 }
