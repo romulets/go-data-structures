@@ -12,6 +12,14 @@ type linkedNode struct {
 	prev *linkedNode
 }
 
+func New() DoubleLinkedList {
+	return DoubleLinkedList{size: 0, head: nil, tail: nil}
+}
+
+func (q *DoubleLinkedList) Size() int {
+	return q.size
+}
+
 func (q *DoubleLinkedList) Enqueue(val int) {
 	n := &linkedNode{val: val, next: nil, prev: nil}
 
