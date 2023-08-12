@@ -93,6 +93,8 @@ func isSizeExactly(t *testing.T, l double_linked_list.DoubleLinkedList, expected
 	}
 }
 func isFirstAndLastExactly(t *testing.T, l double_linked_list.DoubleLinkedList, first int, last int) {
+	t.Helper()
+
 	if l.First() != first {
 		t.Errorf("Expected to last to be %d, but it was %d", first, l.First())
 	}
