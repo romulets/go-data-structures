@@ -23,17 +23,16 @@ func (q *DoubleLinkedList[T]) Size() int {
 func (q *DoubleLinkedList[T]) Enqueue(val T) {
 	n := &linkedNode[T]{val: val, next: nil, prev: nil}
 
-	if q.size == 0 {
+	switch q.size {
+	case 0:
 		q.head = n
-	}
 
-	if q.size == 1 {
+	case 1:
 		n.prev = q.head
 		q.head.next = n
 		q.tail = n
-	}
 
-	if q.size > 1 {
+	default:
 		n.prev = q.tail
 		q.tail.next = n
 		q.tail = n
@@ -52,19 +51,17 @@ func (q *DoubleLinkedList[T]) Dequeue() T {
 func (q *DoubleLinkedList[T]) Pop() T {
 	var last *linkedNode[T]
 
-	// 1
-	if q.size == 1 {
+	switch q.size {
+	case 1:
 		last = q.head
 		q.head = nil
 		q.tail = nil
 
-		// 1, 2
-	} else if q.size == 2 {
+	case 2:
 		last = q.tail
 		q.tail = nil
 
-		// 1, 2, 3
-	} else {
+	default:
 		last = q.tail
 		q.tail = last.prev
 	}
