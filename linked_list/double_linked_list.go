@@ -1,4 +1,4 @@
-package double_linked_list
+package linked_list
 
 type DoubleLinkedList[T interface{}] struct {
 	head *linkedNode[T]

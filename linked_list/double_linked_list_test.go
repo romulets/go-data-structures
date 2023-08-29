@@ -1,12 +1,12 @@
-package double_linked_list_test
+package linked_list_test
 
 import (
-	"github.com/romulets/go-data-structures/double_linked_list"
+	"github.com/romulets/go-data-structures/linked_list"
 	"testing"
 )
 
 func TestEnqueue(t *testing.T) {
-	l := double_linked_list.New[int]()
+	l := linked_list.New[int]()
 
 	isSizeExactly(t, l, 0)
 
@@ -27,7 +27,7 @@ func TestEnqueue(t *testing.T) {
 }
 
 func TestDequeue(t *testing.T) {
-	l := double_linked_list.New[int]()
+	l := linked_list.New[int]()
 	l.Enqueue(8765)
 	l.Enqueue(456)
 	l.Enqueue(9876)
@@ -50,7 +50,7 @@ func TestDequeue(t *testing.T) {
 }
 
 func TestPop(t *testing.T) {
-	l := double_linked_list.New[int]()
+	l := linked_list.New[int]()
 	l.Enqueue(8765)
 	l.Enqueue(456)
 	l.Enqueue(9876)
@@ -73,7 +73,7 @@ func TestPop(t *testing.T) {
 }
 
 func TestLastFirst(t *testing.T) {
-	l := double_linked_list.New[int]()
+	l := linked_list.New[int]()
 	l.Enqueue(8765)
 	l.Enqueue(456)
 	l.Enqueue(9876)
@@ -85,14 +85,14 @@ func TestLastFirst(t *testing.T) {
 	isFirstAndLastExactly(t, l, 456, 456)
 }
 
-func isSizeExactly(t *testing.T, l double_linked_list.DoubleLinkedList[int], expected int) {
+func isSizeExactly(t *testing.T, l linked_list.DoubleLinkedList[int], expected int) {
 	t.Helper()
 
 	if l.Size() != expected {
 		t.Errorf("Expected list to have %d element(s), but it was %d", expected, l.Size())
 	}
 }
-func isFirstAndLastExactly(t *testing.T, l double_linked_list.DoubleLinkedList[int], first int, last int) {
+func isFirstAndLastExactly(t *testing.T, l linked_list.DoubleLinkedList[int], first int, last int) {
 	t.Helper()
 
 	if l.First() != first {
